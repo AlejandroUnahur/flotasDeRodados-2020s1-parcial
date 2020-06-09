@@ -1,0 +1,26 @@
+import wollok.game.*
+import rodados_OtrosRodados.*
+
+program demo {
+
+	game.title("Demo Autos")
+	game.width(12)
+	game.height(12)
+	
+	ChevroletCorsa.position(game.center())
+	 
+	keyboard.up().onPressDo ({ChevroletCorsa.moveteArriba()})	
+	keyboard.down().onPressDo ({ChevroletCorsa.moveteAbajo()})	
+	keyboard.left().onPressDo ({ChevroletCorsa.moveteIzquierda()})	
+	keyboard.right().onPressDo ({ChevroletCorsa.moveteDerecha()})
+
+	
+	game.addVisual(ChevroletCorsa)
+	
+	game.whenCollideDo(ChevroletCorsa, { maiz =>  
+			ChevroletCorsa.moveteA(game.origin())
+			ChevroletCorsa.sacarMaiz(maiz)
+			game.removeVisual(maiz)	
+	} )
+		
+	game.start()
